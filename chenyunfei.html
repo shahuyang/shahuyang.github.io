@@ -1,0 +1,92 @@
+<html>
+<head>
+<style>
+ul{
+  display: flex;
+}
+li{
+  list-style:none;
+  width:20%;
+  font-size:30px;
+}
+</style>
+</head>
+
+<body>
+  <ul>
+    <li>年龄</li>
+    <li>本年度资金</li>
+  </ul>
+  <div id="wrap">
+    <ul>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+
+
+<script>
+// const wrap = document.getElementById('wrap');
+
+// for(let i=28; i < 85; i += 1){
+//   const li = document.createElement('li');
+//   const year = i;
+//   const money = Math.ceil(120000 * (Math.pow(1.04,i-28)));
+//   sum += money;
+
+//   console.log(`${year}岁  ${money}  累计需要  ${sum}`)
+// }
+
+const PV = 80000;
+const PMT  = 100000;
+const RATE = .06;
+
+let  sumCost =  0;
+let money = 0;
+let leftMoney =0;
+
+let leftMoneySum = 0;
+
+
+
+for(let i=29; i < 86; i += 1){
+
+  const year = i;
+  const cost = Math.ceil(120000 * (Math.pow(1.04,i-28)));
+
+  if( i === 29){
+    money = PV*1.06 + PMT;
+    leftMoney = money;
+  } else if(i < 60){
+    money = Math.ceil(money*1.06 + PMT);
+    leftMoney = money;
+  } else {
+  // 退休后
+  // leftMoney -= cost;
+  // leftMoney = money;
+    money = Math.ceil((money-cost)*1.06);
+    // leftMoney = money;
+    
+  }
+
+  
+  // sumCost += cost;
+  // leftMoney = money - cost;
+  // leftMoneySum += leftMoney;
+
+
+  // console.log(`${year}岁有 ${money / 10000}万元 花 ${cost/10000}万元  剩余资产 ${leftMoney / 10000}万元`)
+  // console.log(`${year}岁 有 ${money} 花 ${cost} 当年结余 ${leftMoney} 累计结余 ${leftMoneySum}`)
+  // console.log(`${year}岁 有 ${money} 花 ${cost} 剩余资产 ${leftMoney}`)
+  // console.log(`${year}岁 有 ${money} `)
+}
+
+// PV    本金   80000
+// PMT   期金   100000
+// RATE  复利     6%
+// NPER  时间     
+// FV    终值
+
+</script>
+</body>
+</html>
